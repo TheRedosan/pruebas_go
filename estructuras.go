@@ -1,5 +1,10 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 func main() {
 
 	//Arrays:
@@ -27,5 +32,18 @@ func main() {
 	slc1 = append(slc1[:1], slc1[2:])
 
 	//Mapas:
+	mapa := make(map[string]int)
+	mapa["uno"] = 1
+	mapa["dos"] = 2
+	fmt.Println(mapa["uno"])
+
+	//Parsear JSON a mapa:
+	myJsonMap := make(map[string]interface{})
+	jsonData := []byte(`{"hello":"world"}`)
+	err := json.Unmarshal(jsonData, &myJsonMap)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s\n", myJsonMap["hello"])
 
 }
